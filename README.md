@@ -44,9 +44,9 @@ Przykladowy playbook Ansible moze wygladac tak:
 
   tasks:
     - name: Zainstaluj Apache
-      apt:
+      yum:
         name: apache2
-        state: present  # Upewnij sis, ze Apache jest zainstalowany
+        state: present  # Upewnij sie, ze Apache jest zainstalowany
 
     - name: Uruchom usluge Apache
       service:
@@ -60,3 +60,4 @@ W tym przykladzie:
  - hosts: Okresla grupe maszyn, na ktorych maja byc wykonywane zadania. W tym przypadku, grupa to "webservers".
  - become: Wskazuje, ze zadania beda uruchamiane z uprawnieniami administratora.
  - tasks: Zawiera liste zadan do wykonania. Kazde zadanie ma swojc nazwe i okreslone kroki, ktore maja zostac podjete (np. instalacja pakietu, uruchomienie uslugi).
+
