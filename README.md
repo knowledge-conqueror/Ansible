@@ -28,3 +28,35 @@ Ansible to open-source narzedzie do automatyzacji, zarzadzania konfiguracja i in
 
 6. Moduly Ansible: Ansible uzywa modulow do wykonywania konkretnych zadan na maszynach zarzadzanych. Moduly to jednostki kodu, ktore mozna uzywac w Playbookach, aby zdeklarowac stan systemu.
 
+# Czym sa Playbook-i
+
+ Playbook to plik YAML, ktory zawiera zestaw instrukcji i deklaratywnych opisow, sluzacych do automatyzacji i zarzadzania konfiguracja systemow. Playbooki definiuja zadania, ktore maja byc wykonane na konkretnej grupie maszyn (hostow) oraz okreslaja, w jaki sposob maja zostac te zadania zrealizowane.
+
+Struktura playbooka jest intuicyjna i czytelna, co ulatwia zrozumienie i utrzymanie kodu. Playbook sklada sie z listy blokow, a kazdy blok zawiera definicje zadania do wykonania na okreslonych hostach. Kluczowym elementem playbooka jest takze sekcja "hosts", w ktorej okresla sie grupe maszyn, na ktorych maja byc realizowane zadania.
+
+Przykladowy playbook Ansible moze wygladac tak:
+
+```yml
+---
+- name: Przykladowy Playbook
+  hosts: webservers
+  become: yes  # Uruchamianie zadan z uprawnieniami administratora
+
+  tasks:
+    - name: Zainstaluj Apache
+      apt:
+        name: apache2
+        state: present  # Upewnij sis, ze Apache jest zainstalowany
+
+    - name: Uruchom usluge Apache
+      service:
+        name: apache2
+        state: started  # Uruchom Apache
+```
+
+W tym przykladzie:
+
+ - name: Opisuje nazwe playbooka.
+ - hosts: Okresla grupe maszyn, na ktorych maja byc wykonywane zadania. W tym przypadku, grupa to "webservers".
+ - become: Wskazuje, ze zadania beda uruchamiane z uprawnieniami administratora.
+ - tasks: Zawiera liste zadan do wykonania. Kazde zadanie ma swojc nazwe i okreslone kroki, ktore maja zostac podjete (np. instalacja pakietu, uruchomienie uslugi).
