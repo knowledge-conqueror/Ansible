@@ -38,20 +38,20 @@ Przykladowy playbook Ansible moze wygladac tak:
 
 ```yml
 ---
-- name: Przykladowy Playbook
-  hosts: webservers
-  become: yes  # Uruchamianie zadan z uprawnieniami administratora
+- name: Przykladowy Playbook    # Nazwa playbooka
+  hosts: webservers             # Serwery na ktorych ma zostac uruchomiony     
+  become: yes                   # Uruchamianie zadan z uprawnieniami administratora
 
-  tasks:
+  tasks:                        # Definiowanie zadani
     - name: Zainstaluj Apache
-      yum:
-        name: apache2
-        state: present  # Upewnij sie, ze Apache jest zainstalowany
+      yum:                      # uruchomienie yum 
+        name: apache2           # nazwa kapiektu 
+        state: present          # Upewnij sie, ze Apache jest zainstalowany (proces instalacji)
 
     - name: Uruchom usluge Apache
       service:
         name: apache2
-        state: started  # Uruchom Apache
+        state: started          # Uruchom Apache
 ```
 
 W tym przykladzie:
@@ -61,3 +61,41 @@ W tym przykladzie:
  - become: Wskazuje, ze zadania beda uruchamiane z uprawnieniami administratora.
  - tasks: Zawiera liste zadan do wykonania. Kazde zadanie ma swojc nazwe i okreslone kroki, ktore maja zostac podjete (np. instalacja pakietu, uruchomienie uslugi).
 
+# Instalacja Ansible
+
+# Lokalziacja plikow konfiguracyjnych
+
+## Konfigracja pliku hosts
+
+W pliku host mozemy wpisywac serwery na ktorych bedziemy uruchamiac playbooki na nastepujace sposoby:
+
+1. pojeczyncze wpisy
+2. grupy hostow
+3. zakresy addresow ip
+
+
+# Przydatne komendy
+
+Weryfikacaj skladni playbooka
+
+```bash
+anisble-playbook --syntax-check mtahello.yml
+```
+
+Testowe uruchomienie
+
+```bash
+anisble-playbook --check mtahello.yml
+```
+
+
+Uruchamianie playbooka 
+
+```bash
+anisble-playbook test.yml
+```
+
+
+# Ansible add-hock
+
+# Ansible vault
